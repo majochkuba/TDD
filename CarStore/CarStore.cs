@@ -1,24 +1,46 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CarStoreApp
 {
     public class CarStore
     {
-        private readonly List<Car> _cars = new();
-        public void AddCar(Car car)
+        private List<Car> cars = new List<Car>();
+        private int nextId = 1;
+        public void AddCar(string make, string model, decimal price)
         {
-            _cars.Add(car);
+            cars.Add(new Car(nextId++, make, model, price));
         }
 
         public List<Car> GetAllCars()
         {
-            return _cars.ToList();
+            return new List<Car>(cars);
+        }
+
+        public bool EditCar(int id, string newMake, string newModel, decimal newPrice)
+        {
+            var car = cars.FirstOrDefault(c => c.Id == id);
+            if (car == null) return false;
+
+            car.Make = newMake;
+            car.Model = newModel;
+            car.Price = newPrice;
+            return true;
+        }
+
+        public bool RemoveCar(int id)
+        {
+            var car = cars.FirstOrDefault(c => c.Id == id);
+            if (car == null) return false;
+
+            cars.Remove(car);
+            return true;
         }
 
         public List<Car> FindCarsByMake(string make)
         {
-            return _cars.Where(c => c.Make.Equals(make, StringComparison.OrdinalIgnoreCase)).ToList();
+            return cars.Where(c => c.Make.Equals(make, StringComparison.OrdinalIgnoreCase)).ToList();
         }
     }
 }
