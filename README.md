@@ -38,9 +38,6 @@ Przechowuje kolekcję samochodów i zawiera logikę biznesową aplikacji.
 - `FindCarsByMake(string make)`  
   Wyszukuje i zwraca listę samochodów o podanej marce (niewrażliwe na wielkość liter).
 
-### Klasa `Program`
-Punkt startowy aplikacji, uruchamia interfejs użytkownika w konsoli.
-
 ### Testy jednostkowe
 Projekt zawiera pełny zestaw testów jednostkowych dla każdej funkcjonalności:
 - Dodawanie, edytowanie i usuwanie samochodów
