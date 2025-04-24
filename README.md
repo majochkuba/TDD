@@ -1,27 +1,49 @@
 # CarStore
 
-## Opis projektu
-CarStore to prosta aplikacja konsolowa służąca do zarządzania samochodami w sklepie motoryzacyjnym. Użytkownik może dodawać nowe samochody, przeglądać wszystkie dostępne auta oraz wyszukiwać je po marce.
+## Opis aplikacji
+CarStore to prosta aplikacja konsolowa, która umożliwia zarządzanie sklepem z samochodami. Użytkownik może dodawać nowe samochody, wyświetlać wszystkie dostępne samochody, edytować ich dane, usuwać oraz wyszukiwać samochody po marce.
 
-## Klasy i metody
+## Funkcjonalności
+- Dodawanie nowego samochodu
+- Wyświetlanie listy samochodów
+- Edytowanie danych samochodu
+- Usuwanie samochodu
+- Wyszukiwanie samochodów po marce
 
-### Car
-Reprezentuje pojedynczy samochód.
+## Struktura aplikacji
 
-- `string Make` – marka
-- `string Model` – model
-- `decimal Price` – cena
+### Klasa `Car`
+Model danych przechowujący informacje o samochodzie:
+- `int Id` – unikalny identyfikator samochodu
+- `string Make` – marka samochodu
+- `string Model` – model samochodu
+- `decimal Price` – cena samochodu
 
-### CarStore
-Zarządza listą samochodów dostępnych w sklepie.
+### Klasa `CarStore`
+Przechowuje kolekcję samochodów i zawiera logikę biznesową aplikacji.
 
-- `void AddCar(Car car)` – dodaje samochód do oferty sklepu
-- `List<Car> GetAllCars()` – zwraca wszystkie samochody
-- `List<Car> FindCarsByMake(string make)` – zwraca samochody o podanej marce
+#### Metody:
+- `AddCar(string make, string model, decimal price)`  
+  Dodaje nowy samochód do kolekcji z automatycznie przydzielanym ID.
 
-## Testy jednostkowe
-Dla każdej metody w `CarStore` przygotowane są testy jednostkowe, początkowo z wyjątkiem `NotImplementedException`.
+- `GetAllCars()`  
+  Zwraca kopię listy wszystkich samochodów zapisanych w systemie.
 
----
+- `EditCar(int id, string newMake, string newModel, decimal newPrice)`  
+  Umożliwia edycję danych istniejącego samochodu na podstawie jego ID.
 
-Projekt utworzony i rozwijany zgodnie z metodyką TDD.
+- `RemoveCar(int id)`  
+  Usuwa samochód z kolekcji na podstawie ID, jeśli taki istnieje.
+
+- `FindCarsByMake(string make)`  
+  Wyszukuje i zwraca listę samochodów o podanej marce (niewrażliwe na wielkość liter).
+
+### Klasa `Program`
+Punkt startowy aplikacji, uruchamia interfejs użytkownika w konsoli.
+
+### Testy jednostkowe
+Projekt zawiera pełny zestaw testów jednostkowych dla każdej funkcjonalności:
+- Dodawanie, edytowanie i usuwanie samochodów
+- Wyszukiwanie samochodów
+- Sprawdzenie poprawności ID
+- Testy pozytywne i negatywne przypadki użycia
