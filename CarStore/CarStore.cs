@@ -18,7 +18,7 @@ namespace CarStoreApp
 
         public List<Car> FindCarsByMake(string make)
         {
-            return _cars.Where(char => char.Make.Equals(make, StringComparision.OrdinalIgnoreCase)).ToList();
+            return _cars.Where(c => c.Make.Equals(make, StringComparison.OrdinalIgnoreCase)).ToList();
         }
     }
 }
